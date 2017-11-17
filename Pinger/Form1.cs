@@ -26,7 +26,7 @@ namespace Pinger
         //IPBox
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            ip = IPBox.Text;
+
         }
 
         //PingDelayBox(sec)
@@ -38,33 +38,52 @@ namespace Pinger
         //StartButton
         private void button1_Click(object sender, EventArgs e)
         {
+            ip = IPBox.Text;
+            int PingDelay = int.Parse(PingDelayBox.Text);
+
             Running = !Running;
-            if(Running == true)
+
+            if (Running == true)
             {
-                isLive.Checked = true;
+                //isLive.Checked = true;
+                liveStatus.Image = Properties.Resources.statuson;
                 StartButton.Text = "Stop";
                 Ping isPing = new Ping();
-                    if (ip != "")
+                if (ip != null)
+                {
+                    try
                     {
-                        try
-                        {
-                            PingReply reply = isPing.Send(ip);
-                            pingable = reply.Status == IPStatus.Success;
-                        }
-                        catch (PingException)
-                        {
-                            // Discard PingExceptions and return false;
-                        }
-                        IsResponding.Checked = pingable;
+                        PingReply reply = isPing.Send(ip);
+                        pingable = reply.Status == IPStatus.Success;
                     }
+                    catch (PingException)
+                    {
+                        // Discard PingExceptions and return false;
+                    }
+                    //IsResponding.Checked = pingable;
+                        if (pingable == true)
+                        {
+                            respondingStatus.Image = Properties.Resources.statuson;
+                        }
+                        else //if (pingable == false)
+                        {
+                            respondingStatus.Image = Properties.Resources.statusoff;
+                        }
+                }
             }
             else
             {
-                isLive.Checked = false;
+                respondingStatus.Image = Properties.Resources.statusneutral;
+                liveStatus.Image = Properties.Resources.statusoff;
+                //isLive.Checked = false;
                 StartButton.Text = "Start";
                 pingable = false;
-                IsResponding.Checked = pingable;
+                //IsResponding.Checked = pingable;
             }
+        }
+        private void Pinger_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
