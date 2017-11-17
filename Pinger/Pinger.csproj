@@ -80,13 +80,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\statusneutral.png" />
+    <None Include="Resources\IMGstatusNeutral.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\statusoff.png" />
+    <None Include="Resources\IMGstatusOff.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\statuson.png" />
+    <None Include="Resources\IMGstatusOn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
