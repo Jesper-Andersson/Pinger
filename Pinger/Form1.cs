@@ -46,7 +46,7 @@ namespace Pinger
             if (Running == true)
             {
                 //isLive.Checked = true;
-                liveStatus.Image = Properties.Resources.statuson;
+                liveStatus.Image = Properties.Resources.IMGstatusOn;
                 StartButton.Text = "Stop";
                 Ping isPing = new Ping();
                 if (ip != null)
@@ -60,21 +60,21 @@ namespace Pinger
                     {
                         // Discard PingExceptions and return false;
                     }
-                    //IsResponding.Checked = pingable;
-                        if (pingable == true)
-                        {
-                            respondingStatus.Image = Properties.Resources.statuson;
-                        }
-                        else //if (pingable == false)
-                        {
-                            respondingStatus.Image = Properties.Resources.statusoff;
-                        }
+					//IsResponding.Checked = pingable;
+					if (pingable == true)
+					{
+						respondingStatus.Image = Properties.Resources.IMGstatusOn;
+					}
+					else //if (pingable == false)
+					{
+						respondingStatus.Image = Properties.Resources.IMGstatusOff;
+					}
                 }
             }
             else
             {
-                respondingStatus.Image = Properties.Resources.statusneutral;
-                liveStatus.Image = Properties.Resources.statusoff;
+                respondingStatus.Image = Properties.Resources.IMGstatusNeutral;
+                liveStatus.Image = Properties.Resources.IMGstatusOff;
                 //isLive.Checked = false;
                 StartButton.Text = "Start";
                 pingable = false;

@@ -135,7 +135,7 @@
             // 
             // respondingStatus
             // 
-            this.respondingStatus.Image = global::Pinger.Properties.Resources.statusneutral;
+            this.respondingStatus.Image = global::Pinger.Properties.Resources.IMGstatusNeutral;
             this.respondingStatus.Location = new System.Drawing.Point(244, 19);
             this.respondingStatus.Name = "respondingStatus";
             this.respondingStatus.Size = new System.Drawing.Size(16, 16);
@@ -145,7 +145,7 @@
             // 
             // liveStatus
             // 
-            this.liveStatus.Image = global::Pinger.Properties.Resources.statusneutral;
+            this.liveStatus.Image = global::Pinger.Properties.Resources.IMGstatusNeutral;
             this.liveStatus.Location = new System.Drawing.Point(244, 104);
             this.liveStatus.Name = "liveStatus";
             this.liveStatus.Size = new System.Drawing.Size(16, 16);

@@ -63,9 +63,9 @@ namespace Pinger.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap statusneutral {
+        internal static System.Drawing.Bitmap IMGstatusNeutral {
             get {
-                object obj = ResourceManager.GetObject("statusneutral", resourceCulture);
+                object obj = ResourceManager.GetObject("IMGstatusNeutral", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Pinger.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap statusoff {
+        internal static System.Drawing.Bitmap IMGstatusOff {
             get {
-                object obj = ResourceManager.GetObject("statusoff", resourceCulture);
+                object obj = ResourceManager.GetObject("IMGstatusOff", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace Pinger.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap statuson {
+        internal static System.Drawing.Bitmap IMGstatusOn {
             get {
-                object obj = ResourceManager.GetObject("statuson", resourceCulture);
+                object obj = ResourceManager.GetObject("IMGstatusOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
