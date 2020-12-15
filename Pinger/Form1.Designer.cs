@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.IPBox = new System.Windows.Forms.TextBox();
+            this._IPBox = new System.Windows.Forms.TextBox();
             this.IPLabel = new System.Windows.Forms.Label();
-            this.PingDelayBox = new System.Windows.Forms.TextBox();
+            this._PingDelayBox = new System.Windows.Forms.TextBox();
             this.PingDelayLabel = new System.Windows.Forms.Label();
             this.StartButton = new System.Windows.Forms.Button();
             this.DelayBox = new System.Windows.Forms.TextBox();
@@ -43,14 +43,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.liveStatus)).BeginInit();
             this.SuspendLayout();
             // 
-            // IPBox
+            // _IPBox
             // 
-            this.IPBox.Location = new System.Drawing.Point(15, 45);
-            this.IPBox.Name = "IPBox";
-            this.IPBox.Size = new System.Drawing.Size(245, 20);
-            this.IPBox.TabIndex = 0;
-            this.IPBox.Text = "127.0.0.1";
-            this.IPBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this._IPBox.Location = new System.Drawing.Point(15, 45);
+            this._IPBox.Name = "_IPBox";
+            this._IPBox.Size = new System.Drawing.Size(245, 20);
+            this._IPBox.TabIndex = 0;
+            this._IPBox.Text = "127.0.0.1";
             // 
             // IPLabel
             // 
@@ -61,16 +60,15 @@
             this.IPLabel.TabIndex = 1;
             this.IPLabel.Text = "IP-Adress:";
             // 
-            // PingDelayBox
+            // _PingDelayBox
             // 
-            this.PingDelayBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.PingDelayBox.Location = new System.Drawing.Point(15, 102);
-            this.PingDelayBox.Name = "PingDelayBox";
-            this.PingDelayBox.Size = new System.Drawing.Size(52, 20);
-            this.PingDelayBox.TabIndex = 2;
-            this.PingDelayBox.Text = "2";
-            this.PingDelayBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.PingDelayBox.TextChanged += new System.EventHandler(this.AmountBox_TextChanged);
+            this._PingDelayBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._PingDelayBox.Location = new System.Drawing.Point(15, 102);
+            this._PingDelayBox.Name = "_PingDelayBox";
+            this._PingDelayBox.Size = new System.Drawing.Size(52, 20);
+            this._PingDelayBox.TabIndex = 2;
+            this._PingDelayBox.Text = "2";
+            this._PingDelayBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // PingDelayLabel
             // 
@@ -166,9 +164,9 @@
             this.Controls.Add(this.DelayBox);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.PingDelayLabel);
-            this.Controls.Add(this.PingDelayBox);
+            this.Controls.Add(this._PingDelayBox);
             this.Controls.Add(this.IPLabel);
-            this.Controls.Add(this.IPBox);
+            this.Controls.Add(this._IPBox);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(371, 177);
             this.MinimumSize = new System.Drawing.Size(371, 177);
@@ -185,9 +183,9 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox IPBox;
+        private System.Windows.Forms.TextBox _IPBox;
         private System.Windows.Forms.Label IPLabel;
-        private System.Windows.Forms.TextBox PingDelayBox;
+        private System.Windows.Forms.TextBox _PingDelayBox;
         private System.Windows.Forms.Label PingDelayLabel;
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.TextBox DelayBox;

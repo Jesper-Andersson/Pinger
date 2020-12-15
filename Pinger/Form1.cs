@@ -14,100 +14,88 @@ namespace Pinger
 {
 	public partial class Pinger : Form
 	{
+		//Declarations
+		private static bool Running = false;
+		private static bool pingable = false;
+		private static string ip;
+		private static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
+		private static int alarmCounter = 1;
+		private static Ping isPing = new Ping();
+
 		public Pinger()
 		{
 			InitializeComponent();
+
+			//event handlers
+			myTimer.Tick += TimerEventProcessor;
 		}
 
-		//Declarations
-		public static bool Running = false;
-		public static bool pingable = false;
-		public static string ip;
-		static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
-		static int alarmCounter = 1;
-		static bool exitFlag = false;
-
-		private static void TimerEventProcessor(Object myObject, EventArgs myEventArgs)
+        private void TimerEventProcessor(Object myObject, EventArgs myEventArgs)
 		{
+			//reset tick
 			myTimer.Stop();
 
+			//continue again
 			if (Running == true)
 			{
+				try
+				{
+					PingReply reply = isPing.Send(ip);
+					pingable = reply.Status == IPStatus.Success;
+				}
+				catch (PingException)
+				{
+					// Discard PingExceptions and return false;
+				}
+				if (pingable == true)
+				{
+					respondingStatus.Image = Properties.Resources.IMGstatusOn;
+				}
+				else
+				{
+					respondingStatus.Image = Properties.Resources.IMGstatusOff;
+				}
+
 				// Restarts the timer and increments the counter.
 				alarmCounter += 1;
-				myTimer.Enabled = true;
+				myTimer.Start();
 			}
-			else
-			{
-				// Stops the timer.
-				exitFlag = true;
-			}
-		}
-
-		//IPBox
-		private void textBox1_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		//PingDelayBox(sec)
-		private void AmountBox_TextChanged(object sender, EventArgs e)
-		{
-			int pingDelay = int.Parse(PingDelayBox.Text);
 		}
 
 		//StartButton
 		private void button1_Click(object sender, EventArgs e)
 		{
-			ip = IPBox.Text;
-			int PingDelay = int.Parse(PingDelayBox.Text);
-
 			Running = !Running;
-			myTimer.Tick += new EventHandler(TimerEventProcessor);
 
-			myTimer.Interval = PingDelay * 1000;
-			myTimer.Start();
-
+			//timer is turned on
 			if (Running)
 			{
-				if (exitFlag == false && ip != null)
+				if (_IPBox.Text != null)
 				{
-					Ping isPing = new Ping();
+					ip = _IPBox.Text;
+					int PingDelay = int.Parse(_PingDelayBox.Text);
+
 					liveStatus.Image = Properties.Resources.IMGstatusOn;
 					StartButton.Text = "Stop";
 
-					try
-					{
-						PingReply reply = isPing.Send(ip);
-						pingable = reply.Status == IPStatus.Success;
-					}
-					catch (PingException)
-					{
-						// Discard PingExceptions and return false;
-					}
-					if (pingable == true)
-					{
-						respondingStatus.Image = Properties.Resources.IMGstatusOn;
-					}
-					else
-					{
-						respondingStatus.Image = Properties.Resources.IMGstatusOff;
-					}
-					System.Threading.Thread.Sleep(50);
+					myTimer.Interval = PingDelay * 1000;
+					myTimer.Start();
 				}
 			}
 			else
 			{
-			respondingStatus.Image = Properties.Resources.IMGstatusNeutral;
-			liveStatus.Image = Properties.Resources.IMGstatusOff;
-			
-			StartButton.Text = "Start";
-			pingable = false;
+				respondingStatus.Image = Properties.Resources.IMGstatusNeutral;
+				liveStatus.Image = Properties.Resources.IMGstatusOff;
+
+				StartButton.Text = "Start";
+				pingable = false;
+
+				myTimer.Stop();
 			}
 		}
-		private void Pinger_Load(object sender, EventArgs e)
-		{
 
-		}
+		//makes opening code easier
+		private void Pinger_Load(object sender, EventArgs e)
+		{}
 	}
 }
