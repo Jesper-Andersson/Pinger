@@ -42,7 +42,6 @@ namespace Pinger
 				{
 					PingReply reply = isPing.Send(ip);
 					pingable = reply.Status == IPStatus.Success;
-					DelayBox.Text = reply.RoundtripTime.ToString();
 				}
 				catch (PingException)
 				{
@@ -98,5 +97,5 @@ namespace Pinger
 		//makes opening code easier
 		private void Pinger_Load(object sender, EventArgs e)
 		{}
-    }
+	}
 }
