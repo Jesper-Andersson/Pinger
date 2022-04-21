@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pinger));
             this._IPBox = new System.Windows.Forms.TextBox();
             this.IPLabel = new System.Windows.Forms.Label();
             this._PingDelayBox = new System.Windows.Forms.TextBox();
@@ -105,7 +106,7 @@
             // 
             this.DelayLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.DelayLabel.AutoSize = true;
-            this.DelayLabel.Location = new System.Drawing.Point(264, 19);
+            this.DelayLabel.Location = new System.Drawing.Point(278, 19);
             this.DelayLabel.Name = "DelayLabel";
             this.DelayLabel.Size = new System.Drawing.Size(59, 13);
             this.DelayLabel.TabIndex = 6;
@@ -167,12 +168,12 @@
             this.Controls.Add(this._PingDelayBox);
             this.Controls.Add(this.IPLabel);
             this.Controls.Add(this._IPBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(371, 177);
             this.MinimumSize = new System.Drawing.Size(371, 177);
             this.Name = "Pinger";
-            this.ShowIcon = false;
-            this.Text = " ";
+            this.Text = "Pinger";
             this.Load += new System.EventHandler(this.Pinger_Load);
             ((System.ComponentModel.ISupportInitialize)(this.respondingStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.liveStatus)).EndInit();
