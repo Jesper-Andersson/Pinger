@@ -42,6 +42,7 @@ namespace Pinger
 				{
 					PingReply reply = isPing.Send(ip);
 					pingable = reply.Status == IPStatus.Success;
+					DelayBox.Text = reply.RoundtripTime.ToString();
 				}
 				catch (PingException)
 				{
