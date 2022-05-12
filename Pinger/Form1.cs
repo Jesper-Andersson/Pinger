@@ -128,6 +128,8 @@ namespace Pinger
 
 		private void SetTextBoxStyle(PaintEventArgs e, TextBox tb, bool isValid)
 		{
+			tb.Enabled = !Running;
+
 			if (isValid)
 			{
 				return;
