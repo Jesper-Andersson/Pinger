@@ -9,6 +9,7 @@ using System.Timers;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.NetworkInformation;
+using System.Net;
 
 namespace Pinger
 {
@@ -66,21 +67,19 @@ namespace Pinger
 		//StartButton
 		private void button1_Click(object sender, EventArgs e)
 		{
-			Running = !Running;
-
-			//timer is turned on
-			if (Running)
+			//timer was not running
+			if (!Running)
 			{
-				if (_IPBox.Text != null)
+				bool hasValidIp = TryGetIp(out ip);
+				bool hasValidDelay = TryGetDelay(out int pingDelay);
+				if (hasValidIp && hasValidDelay)
 				{
-					ip = _IPBox.Text;
-					int PingDelay = int.Parse(_PingDelayBox.Text);
-
 					liveStatus.Image = Properties.Resources.IMGstatusOn;
 					StartButton.Text = "Stop";
 
-					myTimer.Interval = PingDelay * 1000;
+					myTimer.Interval = pingDelay * 1000;
 					myTimer.Start();
+					Running = true;
 				}
 			}
 			else
@@ -92,11 +91,34 @@ namespace Pinger
 				pingable = false;
 
 				myTimer.Stop();
+				Running = false;
 			}
 		}
 
 		//makes opening code easier
 		private void Pinger_Load(object sender, EventArgs e)
 		{}
+
+		private bool TryGetIp(out string ip)
+		{
+			ip = _IPBox.Text;
+			if (String.IsNullOrWhiteSpace(ip))
+			{
+				return false;
+			}
+
+			return IPAddress.TryParse(ip, out _);
+		}
+
+		private bool TryGetDelay(out int delay)
+		{
+			string input = _PingDelayBox.Text;
+			if (!int.TryParse(input, out delay))
+			{
+				return false;
+			}
+
+			return delay > 0;
+		}
 	}
 }
