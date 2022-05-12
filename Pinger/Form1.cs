@@ -23,6 +23,9 @@ namespace Pinger
 		private static int alarmCounter = 1;
 		private static Ping isPing = new Ping();
 
+		private bool hasValidIp = true;
+		private bool hasValidDelay = true;
+
 		public Pinger()
 		{
 			InitializeComponent();
@@ -70,8 +73,8 @@ namespace Pinger
 			//timer was not running
 			if (!Running)
 			{
-				bool hasValidIp = TryGetIp(out ip);
-				bool hasValidDelay = TryGetDelay(out int pingDelay);
+				hasValidIp = TryGetIp(out ip);
+				hasValidDelay = TryGetDelay(out int pingDelay);
 				if (hasValidIp && hasValidDelay)
 				{
 					liveStatus.Image = Properties.Resources.IMGstatusOn;
@@ -93,6 +96,8 @@ namespace Pinger
 				myTimer.Stop();
 				Running = false;
 			}
+
+			Refresh();
 		}
 
 		//makes opening code easier
@@ -119,6 +124,25 @@ namespace Pinger
 			}
 
 			return delay > 0;
+		}
+
+		private void SetTextBoxStyle(PaintEventArgs e, TextBox tb, bool isValid)
+		{
+			if (isValid)
+			{
+				return;
+			}
+
+			Pen p = new Pen(Color.Red);
+			Graphics g = e.Graphics;
+			const int variance = 1;
+			g.DrawRectangle(p, new Rectangle(tb.Location.X - variance, tb.Location.Y - variance, tb.Width + variance, tb.Height + variance));
+		}
+
+		private void Pinger_Paint(object sender, PaintEventArgs e)
+		{
+			SetTextBoxStyle(e, _IPBox, hasValidIp);
+			SetTextBoxStyle(e, _PingDelayBox, hasValidDelay);
 		}
 	}
 }
